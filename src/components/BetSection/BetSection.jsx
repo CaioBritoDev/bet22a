@@ -35,13 +35,13 @@ const BetSection = ({ secondsToStart, setSecondsToStart }) => {
     const handleKeyDown = (e) => {
       e.preventDefault();
       let playerId = null;
-      if (e.key === "CapsLock") {
+      if (e.key.toUpperCase() === "Q") {
         playerId = 1;
       } else if (e.key === " ") {
         playerId = 2;
       } else if (e.key === "Enter") {
         playerId = e.location === 0 ? 3 : 4;
-      } else if (e.key === "p") {
+      } else if (e.key.toUpperCase() === "P") {
         setSecondsToStart(0);
       }
 
@@ -73,7 +73,7 @@ const BetSection = ({ secondsToStart, setSecondsToStart }) => {
         </div>
         <div className="keyboard-shortcuts">
           <div className="key-shortcut">
-            <div className="key-box">Tab</div>
+            <div className="key-box">'Q' ou 'q'</div>
             <div className="key-label">Jogador 1</div>
           </div>
           <div className="key-shortcut">
@@ -89,7 +89,7 @@ const BetSection = ({ secondsToStart, setSecondsToStart }) => {
             <div className="key-label">Jogador 4</div>
           </div>
           <div className="key-shortcut">
-            <div className="key-box">p</div>
+            <div className="key-box">'P' ou 'p'</div>
             <div className="key-label">Pula Tempo</div>
           </div>
         </div>

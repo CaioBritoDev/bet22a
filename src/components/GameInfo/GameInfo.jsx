@@ -9,7 +9,7 @@ const GameInfo = () => {
         <li><strong>Objetivo:</strong> Faturar o máximo possível, sem falir.</li>
         <li><strong>Recolhimento de Apostas:</strong>
         <ul>
-          <li>Jogador 1: Use "CapsLock".</li>
+          <li>Jogador 1: Use "'Q' ou 'q'".</li>
           <li>Jogador 2: Use "Space".</li>
           <li>Jogador 3: Use "Enter".</li>
           <li>Jogador 4: Use "Enter" no teclado numérico.</li>

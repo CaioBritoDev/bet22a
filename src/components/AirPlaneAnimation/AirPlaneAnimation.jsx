@@ -57,12 +57,12 @@ const AirPlaneAnimation = ({
     const handleKeyDown = (e) => {
       e.preventDefault();
       const playerKeys = {
-        CapsLock: 1,
+        Q: 1,
         " ": 2,
         Enter: e.location === 0 ? 3 : 4,
       };
 
-      const playerId = playerKeys[e.key];
+      const playerId = playerKeys[e.key.toUpperCase() === "Q" ? "Q" : e.key];
       if (playerId) {
         handleCashOut(playerId);
       }
