@@ -5,29 +5,29 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import PlayersContext from "../contexts/PlayersContext";
 import useSound from "use-sound";
 import BackgroundAudio from "../components/BackgroundAudio";
-import cashoutSound from "/bet22a/sounds/cashout.mp3";
-import gameOverSound from "/bet22a/sounds/game-over.mp3";
+import Multiplier from "../components/Multiplier/Multiplier";
 
 const Crash = () => {
-  const [playCashout] = useSound(cashoutSound, {
+
+  const [playCashout] = useSound("/bet22a/sounds/cashout.mp3", {
     volume: 1,
   });
-  const [playGameOver] = useSound(gameOverSound, {
+  const [playGameOver] = useSound("/bet22a/sounds/game-over.mp3", {
     volume: 1,
   });
 
-  const [roundInProgress, setRoundInProgress] = useState(true);
+  const [roundState, setRoundState] = useState("betting"); // betting, animating, paused
   const [secondsToStart, setSecondsToStart] = useState(15);
   const [roundMultiplier, setRoundMultiplier] = useState(1);
   const [players, setPlayers] = useContext(PlayersContext);
 
   useEffect(() => {
     let timer;
-    if (roundInProgress) {
+    if (roundState === "betting") {
       timer = setInterval(() => {
         if (secondsToStart <= 0) {
           clearInterval(timer);
-          setRoundInProgress(false);
+          setRoundState("animating");
           setSecondsToStart(15);
         } else {
           setSecondsToStart((prev) => prev - 1);
@@ -37,11 +37,11 @@ const Crash = () => {
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [roundInProgress, secondsToStart]);
+  }, [roundState, secondsToStart]);
 
   // Resetar apostas ao iniciar nova rodada
   useEffect(() => {
-    if (roundInProgress) {
+    if (roundState === "betting") {
       // Atualizar saldos
       const updatedPlayers = players.map((player) => {
         if (player.cashedOutAt) {
@@ -63,7 +63,7 @@ const Crash = () => {
       setPlayers(updatedPlayers);
       setRoundMultiplier(1);
     }
-  }, [roundInProgress, setPlayers]);
+  }, [roundState, setPlayers]);
 
   const handleCashOut = useCallback(
     (playerId) => {
@@ -82,16 +82,16 @@ const Crash = () => {
 
   return (
     <>
-      {roundInProgress ? (
+      {roundState === "betting" ? (
         <>
-          <BetSection secondsToStart={secondsToStart} players={players} />
+          <BetSection secondsToStart={secondsToStart} setSecondsToStart={setSecondsToStart} players={players} />
           <BackgroundAudio isActive={false} name="cute-background" />
           <BackgroundAudio isActive={true} name="violent-background" />
         </>
-      ) : (
+      ) : roundState === "animating" ? (
         <>
           <PlaneAnimation
-            setRoundInProgress={setRoundInProgress}
+            setRoundState={setRoundState}
             setRoundMultiplier={setRoundMultiplier}
             roundMultiplier={roundMultiplier}
             handleCashOut={handleCashOut}
@@ -100,6 +100,8 @@ const Crash = () => {
           <BackgroundAudio isActive={true} name="cute-background" />
           <BackgroundAudio isActive={false} name="violent-background" />
         </>
+      ) : (
+        <Multiplier multiplier={roundMultiplier} setRoundState={setRoundState} />
       )}
     </>
   );

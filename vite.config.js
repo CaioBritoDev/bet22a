@@ -7,5 +7,5 @@ export default defineConfig({
   server: {
     port: 3000
   },
-base: '/bet22a/'
+  base: '/bet22a/'
 })

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 // AirPlaneAnimation.js
 const AirPlaneAnimation = ({
-  setRoundInProgress,
+  setRoundState,
   setRoundMultiplier,
   roundMultiplier,
   handleCashOut,
@@ -14,7 +14,7 @@ const AirPlaneAnimation = ({
 
   // Gerar tMax com distribuição exponencial
   useEffect(() => {
-    const lambda = 0.1; // 0.1 é um bom valor
+    const lambda = 0.2; // 0.1 é um bom valor
     const u = Math.random();
     const generatedTMax = -Math.log(1 - u) / lambda;
     setTMax(Math.min(generatedTMax, 180));
@@ -41,7 +41,7 @@ const AirPlaneAnimation = ({
 
         // Finalizar rodada ao atingir tMax
         if (newT >= tMax) {
-          setRoundInProgress(true);
+          setRoundState("paused");
           clearInterval(interval);
         }
 
@@ -50,7 +50,7 @@ const AirPlaneAnimation = ({
     }, 100);
 
     return () => clearInterval(interval);
-  }, [tMax, setRoundInProgress, setRoundMultiplier]);
+  }, [tMax, setRoundState, setRoundMultiplier]);
 
   // Capturar eventos de tecla para cash-out
   useEffect(() => {
@@ -74,14 +74,14 @@ const AirPlaneAnimation = ({
 
   // Cores diferentes para cada segmento
   const segmentColors = [
-    "#FF6B6B",
-    "#000000",
-    "#FFE66D",
-    "#1A535C",
-    "#FF9F1C",
-    "#2EC4B6",
-    "#E71D36",
-    "#662E9B",
+    "#b3e0ff", // Azul claro
+    "#ffd6e0", // Rosa claro
+    "#fff3b0", // Amarelo claro
+    "#caffbf", // Verde claro
+    "#f1c0e8", // Lilás claro
+    "#ffe5b4", // Laranja claro
+    "#e0c3fc", // Roxo claro
+    "#f9f9f9", // Branco gelo
   ];
 
   const segmentIndex = Math.floor(t / 3);
@@ -94,24 +94,33 @@ const AirPlaneAnimation = ({
         style={{
           position: "relative",
           height: "100vh",
-          background: "linear-gradient(135deg, #f8fafc 0%,rgb(191, 217, 246) 50%,rgb(160, 192, 238) 100%)",
+          backgroundImage: "url(/bet22a/background-meme.webp)",
+          backgroundSize: "cover",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
-        {/* ... (código da animação) ... */}
+        {console.log(segmentColors[segmentIndex % segmentColors.length])}
 
         <motion.div
           style={{
             position: "absolute",
+            color: segmentColors[segmentIndex % segmentColors.length],
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             transform: "translate(-50%, -50%)",
             fontSize: "5rem",
             fontWeight: "bold",
-            color: segmentColors[segmentIndex % segmentColors.length],
+            textShadow: `
+      0 0 8px rgb(255, 128, 0),
+      0 0 16px rgb(68, 0, 255),
+      0 0 32px rgb(89, 255, 0),
+      0 0 2px #fff,
+      0 0 4px #fff
+    `,
+
             zIndex: 10,
           }}
           key={segmentIndex}
@@ -159,7 +168,8 @@ const AirPlaneAnimation = ({
             <span style={{ color: "#FFE66D" }}>
               {player.cashedOutAt.toFixed(2)}x (
               <span>
-                +{(player.currentBetSize * player.cashedOutAt).toFixed(2)} BIGATO$
+                +{(player.currentBetSize * player.cashedOutAt).toFixed(2)}{" "}
+                BIGATO$
               </span>
               )
             </span>

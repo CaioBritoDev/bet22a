@@ -27,7 +27,7 @@ const setPlayerBalanceByIdAndBetSize = (
   }
 };
 
-const BetSection = ({ secondsToStart }) => {
+const BetSection = ({ secondsToStart, setSecondsToStart }) => {
   const [players, setPlayers] = useContext(PlayersContext);
   const [betSize, setBetSize] = useState(1);
 
@@ -41,6 +41,8 @@ const BetSection = ({ secondsToStart }) => {
         playerId = 2;
       } else if (e.key === "Enter") {
         playerId = e.location === 0 ? 3 : 4;
+      } else if (e.key === "p") {
+        setSecondsToStart(0);
       }
 
       if (playerId !== null) {
@@ -50,7 +52,7 @@ const BetSection = ({ secondsToStart }) => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [players, betSize, setPlayers]);
+  }, [players, betSize, setPlayers, setSecondsToStart]);
 
   return (
     <div className="bet-section">
@@ -59,7 +61,7 @@ const BetSection = ({ secondsToStart }) => {
         <h1>Crash Game 22A</h1>
         <p className="description">Achou que os gráfico ia ser uma merda né kkkkk</p>
         <p className="timer-display">
-          Seconds to Start Next Round: {secondsToStart}s
+          Próximo Round Em: {secondsToStart}s
         </p>
         <div className="bet-controls">
           <div className="bet-size-label">Tamanho da Aposta</div>
@@ -85,6 +87,10 @@ const BetSection = ({ secondsToStart }) => {
           <div className="key-shortcut">
             <div className="key-box">Num Enter</div>
             <div className="key-label">Jogador 4</div>
+          </div>
+          <div className="key-shortcut">
+            <div className="key-box">p</div>
+            <div className="key-label">Pula Tempo</div>
           </div>
         </div>
         <Players players={players} />
