@@ -1,0 +1,147 @@
+.bet-section {
+  background-image: url(src/assets/background-bet.jpg);
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed; /* Opcional: faz o fundo "grudar" */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
+}
+
+.description {
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0; /* top: 0; right: 0; bottom: 0; left: 0; */
+  background: rgba(0, 0, 0, 0.8); /* 0.5 = 50% de opacidade */
+  z-index: 1;
+}
+
+.content {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bet-section h1 {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+  color: #f0f0f0;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.timer-display {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ba8aea 0%, #4282f2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 32px;
+  padding: 8px 24px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.bet-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 48px;
+}
+
+.bet-size-label {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin-bottom: 12px;
+}
+
+.bet-size-display {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffe66d;
+  margin-bottom: 24px;
+}
+
+.bet-size-slider {
+  width: 100%;
+  height: 12px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bet-size-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffcc00;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(255, 204, 0, 0.5);
+  transition: transform 0.2s;
+}
+
+.bet-size-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Aviso de apostas ativas */
+.bet-warning {
+  font-size: 1rem;
+  color: #ff6b6b;
+  text-align: center;
+  margin-top: 12px;
+  max-width: 400px;
+}
+
+/* Teclas de atalho */
+.keyboard-shortcuts {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.key-shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.key-box {
+  width: auto;
+  padding: 0 12px;
+  height: 50px;
+  background: linear-gradient(135deg, #232526, #414345);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffcc00;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-bottom: 8px;
+}
+
+.key-label {
+  font-size: 0.9rem;
+  color: #b0b0b0;
+}
