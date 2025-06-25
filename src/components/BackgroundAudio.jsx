@@ -6,7 +6,7 @@ function BackgroundAudio({ isActive, name }) {
   useEffect(() => {
     // Cria o elemento de áudio apenas uma vez
     if (!audioRef.current) {
-      audioRef.current = new Audio("../../public/sounds/" + name + ".mp3");
+      audioRef.current = new Audio("/bet22a/sounds/" + name + ".mp3");
       audioRef.current.loop = true;
       audioRef.current.volume = 0.5; // ajuste o volume se quiser
     }

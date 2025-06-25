@@ -5,8 +5,8 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import PlayersContext from "../contexts/PlayersContext";
 import useSound from "use-sound";
 import BackgroundAudio from "../components/BackgroundAudio";
-import cashoutSound from "./../../public/sounds/cashout.mp3";
-import gameOverSound from "./../../public/sounds/game-over.mp3";
+import cashoutSound from "/bet22a/sounds/cashout.mp3";
+import gameOverSound from "/bet22a/sounds/game-over.mp3";
 
 const Crash = () => {
   const [playCashout] = useSound(cashoutSound, {

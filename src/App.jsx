@@ -8,7 +8,7 @@ import "./index.css";
 const App = () => {
   return (
     <PlayersProvider>
-      <Router>
+      <Router basename='/bet22a'>
         <Routes>
           <Route path='/' element={<Game/>}></Route>
           <Route path='/start' element={<Start/>}></Route>
