@@ -150,5 +150,6 @@ h1 {
 
 .key-label {
   font-size: 0.9rem;
-  color: #b0b0b0;
+  color: #ede2ee;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
 }

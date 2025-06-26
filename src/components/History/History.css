@@ -8,35 +8,56 @@
   margin-top: 20px;
   margin-right: 20px;
   display: flex;
-  column-gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
   max-height: 200px;
   overflow-y: auto;
+  row-gap: 20px;
 }
 
 .history::-webkit-scrollbar {
-  width: 14px;                  /* Largura da barra */
+  width: 14px; /* Largura da barra */
 }
 
 .history::-webkit-scrollbar-track {
-  background: white;         /* Cor do fundo da barra */
+  background: white; /* Cor do fundo da barra */
 }
 
 .history::-webkit-scrollbar-thumb {
-  background: #b18afb;            /* Cor da alça */
-  border-radius: 4px;          /* Borda arredondada */
+  background: #b18afb; /* Cor da alça */
+  border-radius: 4px; /* Borda arredondada */
 }
 
 .history::-webkit-scrollbar-thumb:hover {
-  background: #cf3fe2;            /* Cor ao passar o mouse */
+  background: #cf3fe2; /* Cor ao passar o mouse */
+}
+
+.history > p {
+  font-weight: bolder;
+  font-size: 16px;
+  color: #b18afb;
+  font-size: 20px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
 .history-item {
   font-size: 20px;
   font-weight: bolder;
+  padding: 3px 8px;
+  border-radius: 30px;
 }
 
 #show-more-button {

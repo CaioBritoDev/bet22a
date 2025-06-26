@@ -99,7 +99,9 @@ const Crash = () => {
       ></video>
       {roundState === "betting" ? (
         <>
-          <History arrayMultipliers={arrayMultipliers} />
+          {arrayMultipliers.length && (
+            <History arrayMultipliers={arrayMultipliers} />
+          )}
           <BetSection
             secondsToStart={secondsToStart}
             setSecondsToStart={setSecondsToStart}
