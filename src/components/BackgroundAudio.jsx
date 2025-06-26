@@ -11,7 +11,7 @@ function BackgroundAudio({ isActive, name }) {
       audioRef.current.volume = 0.5; // ajuste o volume se quiser
     }
 
-    if (!isActive) {
+    if (isActive) {
       if (audioRef.current.paused) {
         audioRef.current.play();
       }
@@ -26,7 +26,7 @@ function BackgroundAudio({ isActive, name }) {
         audioRef.current.currentTime = 0;
       }
     };
-  }, [isActive]);
+  }, [isActive, name]);
 
   return null; // Não renderiza nada na tela
 }

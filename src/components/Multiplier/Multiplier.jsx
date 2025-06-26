@@ -4,6 +4,7 @@ import useSound from "use-sound";
 
 const Multiplier = ({
   multiplier,
+  setArrayMultipliers,
   setRoundState,
   phraseIndex,
   setPhraseIndex,
@@ -20,6 +21,7 @@ const Multiplier = ({
   useEffect(() => {
     playMissionPassedGta();
     const timeout = setTimeout(() => {
+      setArrayMultipliers((current) => [multiplier.toFixed(2), ...current]);
       setRoundState("betting");
       if (phraseIndex + 1 >= phrases.length) {
         setPhraseIndex(0);
@@ -28,7 +30,15 @@ const Multiplier = ({
       }
     }, 6000);
     return () => clearTimeout(timeout);
-  }, [setPhraseIndex, phraseIndex, setRoundState, phrases.length, playMissionPassedGta]);
+  }, [
+    setPhraseIndex,
+    phraseIndex,
+    setRoundState,
+    phrases.length,
+    playMissionPassedGta,
+    setArrayMultipliers,
+    multiplier,
+  ]);
 
   return (
     <>

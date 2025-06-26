@@ -1,0 +1,54 @@
+.history {
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+  padding: 20px;
+  width: 400px;
+  margin-top: 20px;
+  margin-right: 20px;
+  display: flex;
+  column-gap: 10px;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.history::-webkit-scrollbar {
+  width: 14px;                  /* Largura da barra */
+}
+
+.history::-webkit-scrollbar-track {
+  background: white;         /* Cor do fundo da barra */
+}
+
+.history::-webkit-scrollbar-thumb {
+  background: #b18afb;            /* Cor da alça */
+  border-radius: 4px;          /* Borda arredondada */
+}
+
+.history::-webkit-scrollbar-thumb:hover {
+  background: #cf3fe2;            /* Cor ao passar o mouse */
+}
+
+.history-item {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+#show-more-button {
+  background-color: none;
+  color: #b18afb;
+  font-size: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#show-more-button:hover {
+  color: #cf3fe2;
+}

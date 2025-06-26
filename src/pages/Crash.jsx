@@ -6,6 +6,7 @@ import PlayersContext from "../contexts/PlayersContext";
 import useSound from "use-sound";
 import BackgroundAudio from "../components/BackgroundAudio";
 import Multiplier from "../components/Multiplier/Multiplier";
+import History from "../components/History/History";
 import "./Crash.css";
 
 const Crash = () => {
@@ -19,6 +20,7 @@ const Crash = () => {
   const [roundState, setRoundState] = useState("betting"); // betting, animating, paused
   const [secondsToStart, setSecondsToStart] = useState(15);
   const [roundMultiplier, setRoundMultiplier] = useState(1);
+  const [arrayMultipliers, setArrayMultipliers] = useState([]);
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [players, setPlayers] = useContext(PlayersContext);
 
@@ -97,13 +99,14 @@ const Crash = () => {
       ></video>
       {roundState === "betting" ? (
         <>
+          <History arrayMultipliers={arrayMultipliers} />
           <BetSection
             secondsToStart={secondsToStart}
             setSecondsToStart={setSecondsToStart}
             players={players}
           />
-          <BackgroundAudio isActive={false} name="cute-background" />
-          <BackgroundAudio isActive={true} name="violent-background" />
+          <BackgroundAudio isActive={true} name="cute-background" />
+          <BackgroundAudio isActive={false} name="violent-background" />
         </>
       ) : roundState === "animating" ? (
         <>
@@ -114,16 +117,20 @@ const Crash = () => {
             handleCashOut={handleCashOut}
             players={players}
           />
-          <BackgroundAudio isActive={true} name="cute-background" />
-          <BackgroundAudio isActive={false} name="violent-background" />
+          <BackgroundAudio isActive={true} name="violent-background" />
+          <BackgroundAudio isActive={false} name="cute-background" />
         </>
       ) : (
-        <Multiplier
-          multiplier={roundMultiplier}
-          setRoundState={setRoundState}
-          phraseIndex={phraseIndex}
-          setPhraseIndex={setPhraseIndex}
-        />
+        <>
+          <Multiplier
+            multiplier={roundMultiplier}
+            setArrayMultipliers={setArrayMultipliers}
+            setRoundState={setRoundState}
+            phraseIndex={phraseIndex}
+            setPhraseIndex={setPhraseIndex}
+          />
+          <BackgroundAudio isActive={false} name="violent-background" />
+        </>
       )}
     </>
   );

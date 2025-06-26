@@ -99,8 +99,6 @@ const AirPlaneAnimation = ({
           justifyContent: "center",
         }}
       >
-        {console.log(segmentColors[segmentIndex % segmentColors.length])}
-
         <motion.div
           style={{
             position: "absolute",
