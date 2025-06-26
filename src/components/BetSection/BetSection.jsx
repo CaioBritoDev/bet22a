@@ -55,8 +55,6 @@ const BetSection = ({ secondsToStart, setSecondsToStart }) => {
   }, [players, betSize, setPlayers, setSecondsToStart]);
 
   return (
-    <div className="bet-section">
-      <div className="overlay"></div>
       <div className="content">
         <h1>Crash Game 22A</h1>
         <p className="description">A Primeira Bet Multiplayer Otaku do Brasil!</p>
@@ -95,7 +93,7 @@ const BetSection = ({ secondsToStart, setSecondsToStart }) => {
         </div>
         <Players players={players} />
       </div>
-    </div>
+    
   );
 };
 export default BetSection;

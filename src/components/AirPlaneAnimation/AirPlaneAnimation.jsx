@@ -94,8 +94,6 @@ const AirPlaneAnimation = ({
         style={{
           position: "relative",
           height: "100vh",
-          backgroundImage: "url(/bet22a/background-meme.webp)",
-          backgroundSize: "cover",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

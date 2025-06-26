@@ -3,15 +3,17 @@ import Players from '../components/Players/Players';
 import PlayersContext from '../contexts/PlayersContext';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "./Start.css";
 
 function addPlayer(players, setPlayers) {
   if (players.length >= 4) {
     alert('Número máximo de jogadores atingido!');
     return;
   }
+  const nickname = prompt("Nickname do jogador " + String(players.length + 1));
   const newPlayer = {
     id: players.length + 1,
-    nickname: prompt("Nickname do jogador " + String(players.length + 1)),
+    nickname: nickname.length ? nickname : "Jogador sem nome",
     balance: 100,
     currentBetSize: 0,
     cashedOutAt: null
@@ -28,7 +30,7 @@ const Start = () => {
         addPlayer(players, setPlayers);
       }
       if (e.key === 'Enter') {
-        navigate("/crash")
+        navigate("/crash");
       }
     };
 
@@ -40,10 +42,13 @@ const Start = () => {
     };
   }, [players, setPlayers, navigate]);
 
+  const thereIsNoPlayers = !players.length;
+
   return (
-    <>
+    <div className='start'>
+      {thereIsNoPlayers && <h1 className="initial-instruction">Aperte "Espaço" para adicionar um jogador (máximo 4)</h1>}
       <Players players={players} />
-    </>
+    </div>
   )
 }
 

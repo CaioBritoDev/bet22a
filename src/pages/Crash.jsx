@@ -6,6 +6,7 @@ import PlayersContext from "../contexts/PlayersContext";
 import useSound from "use-sound";
 import BackgroundAudio from "../components/BackgroundAudio";
 import Multiplier from "../components/Multiplier/Multiplier";
+import "./Crash.css";
 
 const Crash = () => {
   const [playCashout] = useSound("/bet22a/sounds/cashout.mp3", {
@@ -82,8 +83,18 @@ const Crash = () => {
     [roundMultiplier, setPlayers, playCashout]
   );
 
+  const videoIndex = roundState === "animating" ? 2 : 1;
+
   return (
     <>
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        src={`/bet22a/background-${videoIndex}.mp4`}
+        id="background-video"
+      ></video>
       {roundState === "betting" ? (
         <>
           <BetSection

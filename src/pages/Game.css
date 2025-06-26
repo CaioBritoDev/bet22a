@@ -35,7 +35,7 @@
   color: black;
 }
 
-.start {
+button.start {
   padding: 10px 50px;
   font-size: 24px;
   border-radius: 20px;
@@ -48,6 +48,6 @@
   cursor: pointer;
 }
 
-.start:hover {
+button.start:hover {
   background-color: black;
 }
