@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import useSound from "use-sound";
 
 const Multiplier = ({
   multiplier,
@@ -7,6 +8,7 @@ const Multiplier = ({
   phraseIndex,
   setPhraseIndex,
 }) => {
+  const [playMissionPassedGta] = useSound("/bet22a/sounds/multiplier.mp3");
   const phrases = [
     "Foi ganancioso, né? Agora aguenta as consequências!",
     "Aposte com sabedoria, ou pague o preço!",
@@ -16,6 +18,7 @@ const Multiplier = ({
   ];
 
   useEffect(() => {
+    playMissionPassedGta();
     const timeout = setTimeout(() => {
       setRoundState("betting");
       if (phraseIndex + 1 >= phrases.length) {
@@ -23,9 +26,9 @@ const Multiplier = ({
       } else {
         setPhraseIndex((c) => c + 1);
       }
-    }, 5000);
+    }, 6000);
     return () => clearTimeout(timeout);
-  }, [setPhraseIndex, phraseIndex, setRoundState, phrases.length]);
+  }, [setPhraseIndex, phraseIndex, setRoundState, phrases.length, playMissionPassedGta]);
 
   return (
     <>

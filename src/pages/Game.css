@@ -11,7 +11,6 @@
   background-size: cover;
   height: 100vh;
   color: black;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .game-card {
@@ -42,7 +41,6 @@ button.start {
   border: 1px solid #00aaff;
   background-color: #00aaff;
   color: white;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: bolder;
   cursor: pointer;
