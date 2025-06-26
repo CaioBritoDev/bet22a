@@ -59,7 +59,7 @@ const BetSection = ({ secondsToStart, setSecondsToStart }) => {
       <div className="overlay"></div>
       <div className="content">
         <h1>Crash Game 22A</h1>
-        <p className="description">Achou que os gráfico ia ser uma merda né kkkkk</p>
+        <p className="description">A Primeira Bet Multiplayer Otaku do Brasil!</p>
         <p className="timer-display">
           Próximo Round Em: {secondsToStart}s
         </p>

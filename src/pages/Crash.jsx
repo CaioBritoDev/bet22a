@@ -8,7 +8,6 @@ import BackgroundAudio from "../components/BackgroundAudio";
 import Multiplier from "../components/Multiplier/Multiplier";
 
 const Crash = () => {
-
   const [playCashout] = useSound("/bet22a/sounds/cashout.mp3", {
     volume: 1,
   });
@@ -19,6 +18,7 @@ const Crash = () => {
   const [roundState, setRoundState] = useState("betting"); // betting, animating, paused
   const [secondsToStart, setSecondsToStart] = useState(15);
   const [roundMultiplier, setRoundMultiplier] = useState(1);
+  const [phraseIndex, setPhraseIndex] = useState(0);
   const [players, setPlayers] = useContext(PlayersContext);
 
   useEffect(() => {
@@ -43,22 +43,24 @@ const Crash = () => {
   useEffect(() => {
     if (roundState === "betting") {
       // Atualizar saldos
-      const updatedPlayers = players.map((player) => {
-        if (player.cashedOutAt) {
-          return {
-            ...player,
-            balance:
-              player.balance + player.currentBetSize * player.cashedOutAt,
-            currentBetSize: 0,
-            cashedOutAt: null,
-          };
-        }
-        if (player.balance <= 0) {
-          playGameOver();
-          return null; // Remove player if balance is zero
-        }
-        return { ...player, currentBetSize: 0, cashedOutAt: null };
-      }).filter(p => p !== null); // Remove players with zero balance
+      const updatedPlayers = players
+        .map((player) => {
+          if (player.cashedOutAt) {
+            return {
+              ...player,
+              balance:
+                player.balance + player.currentBetSize * player.cashedOutAt,
+              currentBetSize: 0,
+              cashedOutAt: null,
+            };
+          }
+          if (player.balance <= 0) {
+            playGameOver();
+            return null; // Remove player if balance is zero
+          }
+          return { ...player, currentBetSize: 0, cashedOutAt: null };
+        })
+        .filter((p) => p !== null); // Remove players with zero balance
 
       setPlayers(updatedPlayers);
       setRoundMultiplier(1);
@@ -77,14 +79,18 @@ const Crash = () => {
         })
       );
     },
-    [roundMultiplier, setPlayers]
+    [roundMultiplier, setPlayers, playCashout]
   );
 
   return (
     <>
       {roundState === "betting" ? (
         <>
-          <BetSection secondsToStart={secondsToStart} setSecondsToStart={setSecondsToStart} players={players} />
+          <BetSection
+            secondsToStart={secondsToStart}
+            setSecondsToStart={setSecondsToStart}
+            players={players}
+          />
           <BackgroundAudio isActive={false} name="cute-background" />
           <BackgroundAudio isActive={true} name="violent-background" />
         </>
@@ -101,7 +107,12 @@ const Crash = () => {
           <BackgroundAudio isActive={false} name="violent-background" />
         </>
       ) : (
-        <Multiplier multiplier={roundMultiplier} setRoundState={setRoundState} />
+        <Multiplier
+          multiplier={roundMultiplier}
+          setRoundState={setRoundState}
+          phraseIndex={phraseIndex}
+          setPhraseIndex={setPhraseIndex}
+        />
       )}
     </>
   );

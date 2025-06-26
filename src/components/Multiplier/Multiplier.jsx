@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 
-const Multiplier = ({ multiplier, setRoundState }) => {
+const Multiplier = ({
+  multiplier,
+  setRoundState,
+  phraseIndex,
+  setPhraseIndex,
+}) => {
   const phrases = [
     "Foi ganancioso, né? Agora aguenta as consequências!",
     "Aposte com sabedoria, ou pague o preço!",
@@ -10,18 +15,17 @@ const Multiplier = ({ multiplier, setRoundState }) => {
     "Aposte com cautela, ou a casa (apartamento) sempre ganha!",
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   useEffect(() => {
-    console.log("Multiplier component mounted");
-    setCurrentIndex((current) =>
-      current + 1 >= phrases.length ? 0 : current + 1
-    );
     const timeout = setTimeout(() => {
       setRoundState("betting");
+      if (phraseIndex + 1 >= phrases.length) {
+        setPhraseIndex(0);
+      } else {
+        setPhraseIndex((c) => c + 1);
+      }
     }, 5000);
     return () => clearTimeout(timeout);
-  }, [setRoundState, setCurrentIndex, phrases.length]);
+  }, [setPhraseIndex, phraseIndex, setRoundState, phrases.length]);
 
   return (
     <>
@@ -58,7 +62,7 @@ const Multiplier = ({ multiplier, setRoundState }) => {
     `,
           }}
         >
-          {phrases[currentIndex]}
+          {phrases[phraseIndex]}
         </p>
 
         <motion.div
@@ -92,8 +96,6 @@ const Multiplier = ({ multiplier, setRoundState }) => {
         >
           {multiplier.toFixed(2)}x
         </motion.div>
-
-        {/* ... (painel de jogadores) ... */}
       </div>
     </>
   );

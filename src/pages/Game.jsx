@@ -1,12 +1,15 @@
-import DynamicInfo from "../components/DynamicInfo/DynamicInfo";
+import ButtonStart from "../components/ButtonStart/ButtonStart";
 import GameInfo from "../components/GameInfo/GameInfo";
+import "./Game.css";
 
 const Game = () => {
   return (
-    <>
-      <GameInfo />
-      <DynamicInfo />
-    </>
+    <div className="game-vision">
+      <div className="game-card">
+        <GameInfo />
+        <ButtonStart />
+      </div>
+    </div>
   );
 };
 

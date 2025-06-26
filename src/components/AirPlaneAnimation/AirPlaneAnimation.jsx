@@ -111,7 +111,7 @@ const AirPlaneAnimation = ({
             alignItems: "center",
             justifyContent: "center",
             transform: "translate(-50%, -50%)",
-            fontSize: "5rem",
+            fontSize: `${roundMultiplier <= 5 ? (roundMultiplier * 2).toFixed(2) : 10}rem`,
             fontWeight: "bold",
             textShadow: `
       0 0 8px rgb(255, 128, 0),

@@ -1,0 +1,53 @@
+.game-vision {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  background-image: url("/bet22a/background-meme.webp");
+  background-size: cover;
+  height: 100vh;
+  color: black;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.game-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.game-info > h1 {
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 0 2px #00aaff, 0 0 8px #00aaff, 0 0 16px #00aaff, 0 0 2px #fff,
+    0 0 4px #fff;
+}
+
+.game-info > p {
+  margin-bottom: 20px;
+  color: black;
+}
+
+.start {
+  padding: 10px 50px;
+  font-size: 24px;
+  border-radius: 20px;
+  border: 1px solid #00aaff;
+  background-color: #00aaff;
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 1px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.start:hover {
+  background-color: black;
+}
